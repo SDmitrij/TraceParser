@@ -1,17 +1,17 @@
 package app.shared;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Config {
 
-    private ArrayList<String> operators;
+    private List<String> operators;
     private String delimiter;
     private String database;
 
-    public ArrayList<String> getOperators() {
+    public List<String> getOperators() {
         return operators;
     }
-    public void setOperators(ArrayList<String> operators) {
+    public void setOperators(List<String> operators) {
         this.operators = operators;
     }
     public String getDelimiter() {
