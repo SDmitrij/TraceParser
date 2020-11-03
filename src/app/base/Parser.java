@@ -1,23 +1,29 @@
 package app.base;
 
 import app.db.Interaction;
-import app.shared.Block;
 import app.shared.Match;
+
+import java.util.List;
 
 public abstract class Parser {
 
-    protected Block block;
     public Match match;
     private final Interaction interaction;
+    protected List<String> blockLines;
 
     protected Parser() {
-        block = new Block();
         match = new Match();
         interaction = new Interaction(this);
     }
 
-    public abstract void parse();
-    private void write() {
+    protected abstract void parse();
+
+    public void to(List<String> blockLines) {
+        this.blockLines = blockLines;
+        parse();
+    }
+
+    protected void write() {
         interaction.save();
         match = new Match();
     }

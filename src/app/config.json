@@ -1,7 +1,5 @@
 {
-  "traceFile": "C:\\Users\\sidelev\\Downloads\\SQLTrace.log",
   "operators": ["Bind", "Select", "Alter"],
   "delimiter": "----------------------------------------------------------------------------------------------------",
-  "dbConnection": "",
-  "outStatFile": "C:\\Users\\sidelev\\Downloads\\traceStatistic.json"
+  "dbConnection": ""
 }

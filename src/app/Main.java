@@ -1,12 +1,12 @@
 package app;
 
-import app.initialize.ParserInitializer;
+import app.entity.Trace;
+
+import java.io.FileNotFoundException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        var parser = new ParserInitializer();
-        parser.loop();
-        parser.generateStat();
+    public static void main(String[] args) throws FileNotFoundException {
+       new Trace().analyze();
     }
 }

@@ -15,28 +15,34 @@ public class Trace {
     private final Block block = new Block();
     private final Config config = new ConfigInitializer().getConfig();
     private final List<Parser> parsers;
-    private final Scanner scanner = new Scanner(new File(config.traceFile));
+    private final Scanner scanner;
 
-    public Trace() throws FileNotFoundException { parsers = new ParserInitializer().getList(); }
-    public void analyze() { apply(); }
+    public Trace() throws FileNotFoundException {
+        parsers = new ParserInitializer().getList();
+        scanner = new Scanner(new File(System.getProperty("user.dir") + "\\SQLTrace.log"));
+    }
+
+    public void analyze() {
+        apply();
+        generateStat();
+    }
 
     private void apply() {
-        for (Parser parser : parsers) {
-            parser.parse();
+        while (scanner.hasNext()) {
+            var line = scanner.nextLine();
+            if (!line.equals(config.getDelimiter())) {
+                block.add(line);
+            } else {
+                for (Parser parser : parsers) {
+                    parser.to(block.getLines());
+                }
+                block.clear();
+            }
         }
+        scanner.close();
     }
 
-    private void getBlock() {
-        var line = readLineByLine();
-        if (!line.equals(config.delimiter)) {
-            block.add(readLineByLine());
-        }
-    }
+    private void generateStat() {
 
-    private String readLineByLine() {
-       if (!scanner.hasNext()) {
-           scanner.close();
-       }
-       return scanner.nextLine();
     }
 }

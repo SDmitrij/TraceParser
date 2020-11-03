@@ -19,15 +19,13 @@ public class ParserInitializer {
 
     private void init() {
         try {
-            for (String operator : config.operators) {
+            for (String operator : config.getOperators()) {
                 parsers.add((Parser)Class.forName("app.concrete." + operator).getDeclaredConstructor().newInstance());
             }
         } catch (InstantiationException
                 | NoSuchMethodException
                 | ClassNotFoundException
                 | InvocationTargetException
-                | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+                | IllegalAccessException e) { e.printStackTrace(); }
     }
 }

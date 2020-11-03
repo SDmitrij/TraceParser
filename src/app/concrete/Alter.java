@@ -1,8 +1,6 @@
 package app.concrete;
 
 import app.base.Parser;
-import app.shared.Block;
-import app.shared.Match;
 
 public class Alter extends Parser {
 
@@ -11,7 +9,8 @@ public class Alter extends Parser {
     }
 
     @Override
-    public void parse() {
+    protected void parse() {
 
+        write();
     }
 }

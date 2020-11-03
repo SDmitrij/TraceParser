@@ -2,6 +2,8 @@ package app.concrete;
 
 import app.base.Parser;
 
+import java.util.List;
+
 public class Bind extends Parser {
 
     public Bind() {
@@ -9,7 +11,7 @@ public class Bind extends Parser {
     }
 
     @Override
-    public void parse() {
-
+    protected void parse() {
+        write();
     }
 }
