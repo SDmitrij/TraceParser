@@ -15,7 +15,8 @@ public class Connect {
 
     private Connect() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:" + config.getDbConnection());
+            connection = DriverManager
+                    .getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + config.getDatabase());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

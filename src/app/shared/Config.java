@@ -6,7 +6,7 @@ public class Config {
 
     private ArrayList<String> operators;
     private String delimiter;
-    private String dbConnection;
+    private String database;
 
     public ArrayList<String> getOperators() {
         return operators;
@@ -20,10 +20,10 @@ public class Config {
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
     }
-    public String getDbConnection() {
-        return dbConnection;
+    public String getDatabase() {
+        return database;
     }
-    public void setDbConnection(String dbConnection) {
-        this.dbConnection = dbConnection;
+    public void setDatabase(String database) {
+        this.database = database;
     }
 }

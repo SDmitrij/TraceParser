@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class ConfigInitializer {
 
-    private static final String configFile = System.getProperty("user.dir") + "\\src\\app\\config.json";
+    private static final String configFile = System.getProperty("user.dir") + "\\config.json";
     private Config config;
 
     public ConfigInitializer() { serialize(); }
