@@ -1,5 +1,5 @@
 {
-  "operators": ["Bind", "Select", "Alter"],
+  "operators": ["Bind", "Select", "Alter", "Prepare"],
   "delimiter": "----------------------------------------------------------------------------------------------------",
   "dbConnection": ""
 }

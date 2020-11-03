@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Trace {
+
     private final Block block = new Block();
     private final Config config = new ConfigInitializer().getConfig();
     private final List<Parser> parsers;

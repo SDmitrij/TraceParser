@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class ConfigInitializer {
+
     private static final String configFile = System.getProperty("user.dir") + "\\src\\app\\config.json";
     private Config config;
 

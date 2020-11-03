@@ -8,20 +8,19 @@ import java.util.List;
 public abstract class Parser {
 
     public Match match;
-    private final Interaction interaction;
     protected List<String> blockLines;
-
-    protected Parser() {
-        match = new Match();
-        interaction = new Interaction(this);
-    }
-
-    protected abstract void parse();
+    private final Interaction interaction;
 
     public void to(List<String> blockLines) {
         this.blockLines = blockLines;
         parse();
     }
+
+    protected Parser() {
+        match = new Match();
+        interaction = new Interaction(this);
+    }
+    protected abstract void parse();
 
     protected void write() {
         interaction.save();
