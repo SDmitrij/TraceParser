@@ -26,6 +26,8 @@ public class ParserInitializer {
                 | NoSuchMethodException
                 | ClassNotFoundException
                 | InvocationTargetException
-                | IllegalAccessException e) { e.printStackTrace(); }
+                | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }
