@@ -20,7 +20,7 @@ public class Trace {
 
     public Trace() throws FileNotFoundException {
         parsers = new ParserInitializer().getList();
-        scanner = new Scanner(new File(System.getProperty("user.dir") + "\\SQLTrace.log"));
+        scanner = new Scanner(new File(System.getProperty("user.dir") + File.separator + "SQLTrace.log"));
     }
 
     public void analyze() {

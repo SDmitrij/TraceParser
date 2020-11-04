@@ -3,6 +3,7 @@ package app.db;
 import app.initialize.ConfigInitializer;
 import app.shared.Config;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,13 +11,12 @@ import java.sql.SQLException;
 public class Connect {
 
     private static final Config config = new ConfigInitializer().getConfig();
-    private static Connection connection;
     private static Connect instance;
 
     private Connect() {
         try {
-            connection = DriverManager
-                    .getConnection("jdbc:sqlite:" + System.getProperty("user.dir") + config.getDatabase());
+            DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") +
+                File.separator + config.getDatabase());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
