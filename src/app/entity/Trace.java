@@ -28,7 +28,7 @@ public class Trace {
 
     public void analyze() {
         apply();
-        generateStat();
+        statistics();
     }
 
     private void apply() {
@@ -41,6 +41,7 @@ public class Trace {
                 for (Parser parser : parsers) {
                     parser.to(block.getLines());
                     interaction.save(parser);
+                    parser.matches.clear();
                 }
                 block.clear();
             }
@@ -56,7 +57,7 @@ public class Trace {
         }
     }
 
-    private void generateStat() {
+    private void statistics() {
 
     }
 }

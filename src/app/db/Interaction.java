@@ -24,7 +24,6 @@ public class Interaction {
     public void save(Parser parser) {
         this.parser = parser;
         insert();
-        this.parser.matches.clear();
     }
 
     public void perform() { }
