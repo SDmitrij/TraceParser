@@ -12,6 +12,6 @@ public class Select extends Parser {
 
     @Override
     protected void parse() {
-        write();
+
     }
 }

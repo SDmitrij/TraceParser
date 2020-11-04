@@ -19,7 +19,7 @@ public class Connect {
             connection = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") +
                 File.separator + config.getDatabase());
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

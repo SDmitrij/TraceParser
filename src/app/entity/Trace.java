@@ -1,6 +1,7 @@
 package app.entity;
 
 import app.base.Parser;
+import app.db.Interaction;
 import app.initialize.ConfigInitializer;
 import app.initialize.ParserInitializer;
 import app.shared.Block;
@@ -16,11 +17,13 @@ public class Trace {
     private final Block block = new Block();
     private final Config config = ConfigInitializer.getInstance().getConfig();
     private final List<Parser> parsers;
-    private final Scanner scanner;
+    private Scanner scanner;
+    private final Interaction interaction;
 
-    public Trace() throws FileNotFoundException {
+    public Trace() {
         parsers = new ParserInitializer().getList();
-        scanner = new Scanner(new File(System.getProperty("user.dir") + File.separator + "SQLTrace.log"));
+        interaction = new Interaction();
+        setScanner();
     }
 
     public void analyze() {
@@ -29,6 +32,7 @@ public class Trace {
     }
 
     private void apply() {
+        interaction.seed();
         while (scanner.hasNext()) {
             var line = scanner.nextLine();
             if (!line.equals(config.getDelimiter())) {
@@ -36,11 +40,20 @@ public class Trace {
             } else {
                 for (Parser parser : parsers) {
                     parser.to(block.getLines());
+                    interaction.save(parser);
                 }
                 block.clear();
             }
         }
         scanner.close();
+    }
+
+    private void setScanner() {
+        try {
+            scanner = new Scanner(new File(System.getProperty("user.dir") + File.separator + "SQLTrace.log"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void generateStat() {
