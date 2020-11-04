@@ -10,12 +10,13 @@ import java.sql.SQLException;
 
 public class Connect {
 
-    private static final Config config = new ConfigInitializer().getConfig();
-    private static Connect instance;
+    private static final Config config = ConfigInitializer.getInstance().getConfig();
+    private static final Connect instance = new Connect();
+    private Connection connection;
 
     private Connect() {
         try {
-            DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") +
+            connection = DriverManager.getConnection("jdbc:sqlite:" + System.getProperty("user.dir") +
                 File.separator + config.getDatabase());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -23,9 +24,9 @@ public class Connect {
     }
 
     public static Connect getInstance() {
-        if (instance == null) {
-            instance = new Connect();
-        }
         return instance;
+    }
+    public Connection getConnection() {
+        return connection;
     }
 }

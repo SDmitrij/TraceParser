@@ -12,6 +12,6 @@ public class Bind extends Parser {
 
     @Override
     protected void parse() {
-        write();
+
     }
 }

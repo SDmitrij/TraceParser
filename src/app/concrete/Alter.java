@@ -11,6 +11,5 @@ public class Alter extends Parser {
     @Override
     protected void parse() {
 
-        write();
     }
 }

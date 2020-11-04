@@ -9,6 +9,6 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
        //new Trace().analyze();
-        var connection = Connect.getInstance();
+        var connection = Connect.getInstance().getConnection();
     }
 }

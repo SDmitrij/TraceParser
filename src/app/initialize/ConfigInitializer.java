@@ -11,11 +11,16 @@ public class ConfigInitializer {
     private static final String
             configFile = System.getProperty("user.dir") + File.separator + "config.json";
     private Config config;
+    private static final ConfigInitializer initializer = new ConfigInitializer();
 
-    public ConfigInitializer() { serialize(); }
+    private ConfigInitializer() { deserialize(); }
     public Config getConfig() { return config; }
 
-    private void serialize() {
+    public static ConfigInitializer getInstance() {
+        return initializer;
+    }
+
+    private void deserialize() {
         try {
             config = new ObjectMapper().readValue(new File(configFile), Config.class);
         } catch (IOException e) {

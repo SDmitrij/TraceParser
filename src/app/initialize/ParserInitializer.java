@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ParserInitializer {
 
-    private final Config config = new ConfigInitializer().getConfig();
+    private final Config config = ConfigInitializer.getInstance().getConfig();
     private final List<Parser> parsers = new ArrayList<>();
 
     public ParserInitializer() { init(); }
