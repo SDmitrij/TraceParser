@@ -31,8 +31,8 @@ public class Interaction {
     public void seed() {
         var sql = new StringBuilder();
         for (String operator : config.getOperators()) {
-            sql.append(String.format("CREATE TABLE IF NOT EXISTS %s.%s " +
-                "(match_id INTEGER PRIMARY KEY, match_obj TEXT NOT NULL);", config.getDatabase(), operator));
+            sql.append(String.format("CREATE TABLE IF NOT EXISTS %s " +
+                "(match_id INTEGER PRIMARY KEY, match_obj TEXT NOT NULL);", operator));
         }
         execute(sql.toString());
     }

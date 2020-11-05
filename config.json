@@ -1,5 +1,5 @@
 {
   "operators": ["Bind", "Select", "Alter", "Prepare"],
   "delimiter": "----------------------------------------------------------------------------------------------------",
-  "database": "trace_parser.db"
+  "database": "trace_parser"
 }

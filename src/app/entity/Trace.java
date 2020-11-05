@@ -4,7 +4,6 @@ import app.base.Parser;
 import app.db.Interaction;
 import app.initialize.ConfigInitializer;
 import app.initialize.ParserInitializer;
-import app.shared.Block;
 import app.shared.Config;
 
 import java.io.File;
@@ -14,7 +13,6 @@ import java.util.Scanner;
 
 public class Trace {
 
-    private final Block block = new Block();
     private final Config config = ConfigInitializer.getInstance().getConfig();
     private final List<Parser> parsers;
     private Scanner scanner;
@@ -32,18 +30,19 @@ public class Trace {
     }
 
     private void apply() {
+        var block = new StringBuilder();
         interaction.seed();
         while (scanner.hasNext()) {
             var line = scanner.nextLine();
             if (!line.equals(config.getDelimiter())) {
-                block.add(line);
+                block.append(line);
             } else {
                 for (Parser parser : parsers) {
-                    parser.to(block.getLines());
+                    parser.to(block.toString());
                     interaction.save(parser);
                     parser.matches.clear();
                 }
-                block.clear();
+                block = new StringBuilder();
             }
         }
         scanner.close();
