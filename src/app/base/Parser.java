@@ -8,10 +8,10 @@ import java.util.List;
 public abstract class Parser {
 
     public List<Match> matches;
-    protected String block;
+    protected List<String> blockLines;
 
-    public void to(String block) {
-        this.block = block;
+    public void to(List<String> blockLines) {
+        this.blockLines = blockLines;
         parse();
     }
 

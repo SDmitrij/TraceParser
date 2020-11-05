@@ -2,14 +2,20 @@ package app.shared;
 
 public class Match {
 
-    public Integer blockId;
-    public String operator;
-    public String time;
+    private String operator;
+    private String time;
 
-    public Integer getBlockId() { return blockId; }
-    public void setBlockId(Integer blockId) { this.blockId = blockId; }
     public String getOperator() { return operator; }
-    public void setOperator(String operator) { this.operator = operator; }
+
+    public Match setOperator(String operator) {
+        this.operator = operator;
+        return this;
+    }
+
     public String getTime() { return time; }
-    public void setTime(String time) { this.time = time; }
+
+    public Match setTime(String time) {
+        this.time = time;
+        return this;
+    }
 }

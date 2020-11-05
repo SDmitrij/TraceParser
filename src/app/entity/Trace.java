@@ -8,6 +8,7 @@ import app.shared.Config;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,19 +31,19 @@ public class Trace {
     }
 
     private void apply() {
-        var block = new StringBuilder();
+        var blockLines = new ArrayList<String>();
         interaction.seed();
         while (scanner.hasNext()) {
             var line = scanner.nextLine();
             if (!line.equals(config.getDelimiter())) {
-                block.append(line);
+                blockLines.add(line);
             } else {
                 for (Parser parser : parsers) {
-                    parser.to(block.toString());
+                    parser.to(blockLines);
                     interaction.save(parser);
                     parser.matches.clear();
                 }
-                block = new StringBuilder();
+                blockLines.clear();
             }
         }
         scanner.close();
@@ -50,7 +51,8 @@ public class Trace {
 
     private void setScanner() {
         try {
-            scanner = new Scanner(new File(System.getProperty("user.dir") + File.separator + "SQLTrace.log"));
+            var path = String.format("%s%sSQLTrace.log", System.getProperty("user.dir"), File.separator);
+            scanner = new Scanner(new File(path));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

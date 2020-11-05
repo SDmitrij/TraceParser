@@ -1,8 +1,9 @@
 package app.concrete;
 
 import app.base.Parser;
+import app.shared.Match;
 
-import java.util.List;
+import java.util.regex.Pattern;
 
 public class Select extends Parser {
 
@@ -12,6 +13,18 @@ public class Select extends Parser {
 
     @Override
     protected void parse() {
-
+        var pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=[(])");
+        var lines = blockLines.iterator();
+        while(lines.hasNext()) {
+            var line = lines.next();
+            if (line.contains("SELECT")) {
+                var selectStat = lines.next();
+                var matcher = pattern.matcher(selectStat);
+                if (matcher.find()) {
+                    var time = matcher.group();
+                    matches.add(new Match().setOperator("Select").setTime(time));
+                }
+            }
+        }
     }
 }
