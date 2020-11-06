@@ -14,6 +14,9 @@ public class Connect {
     private static final Connect instance = new Connect();
     private Connection connection;
 
+    public static Connect getInstance() { return instance; }
+    public Connection getConnection() { return connection; }
+
     private Connect() {
         try {
             connection = DriverManager
@@ -22,12 +25,5 @@ public class Connect {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public static Connect getInstance() {
-        return instance;
-    }
-    public Connection getConnection() {
-        return connection;
     }
 }
