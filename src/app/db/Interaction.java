@@ -3,11 +3,10 @@ package app.db;
 import app.base.Parser;
 import app.initialize.ConfigInitializer;
 import app.shared.Config;
-import app.shared.Match;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 
 public class Interaction {
 
@@ -21,23 +20,12 @@ public class Interaction {
         this.parser = parser;
         insert();
     }
-
-    public void perform() { }
+    public void perform() { select(); }
 
     public void seed() {
         var sql = "CREATE TABLE IF NOT EXISTS 'matches' ('id' INTEGER PRIMARY KEY, 'operator' TEXT NOT NULL," +
             "'time' TEXT NOT NULL);";
         executeUpdate(sql);
-    }
-
-    private void executeUpdate(String sql) {
-        try {
-            var stmt = connection.createStatement();
-            stmt.executeUpdate(sql);
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void insert() {
@@ -55,5 +43,33 @@ public class Interaction {
         executeUpdate(sql.toString());
     }
 
-    private void select() { }
+    private void select() {
+        var res = executeQuery();
+
+    }
+
+    private void clear() {
+        var sql = "DELETE * FROM 'matches'";
+        executeUpdate(sql);
+    }
+
+    private void executeUpdate(String sql) {
+        try {
+            var stmt = connection.createStatement();
+            stmt.executeUpdate(sql);
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ResultSet executeQuery() {
+        try {
+            var stmt = connection.createStatement();
+            return stmt.executeQuery("SELECT * FROM 'matches'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
