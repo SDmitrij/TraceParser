@@ -7,13 +7,13 @@ import java.util.regex.Pattern;
 
 public class Select extends Parser {
 
+    private final Pattern pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=[(])");
     public Select() {
         super();
     }
 
     @Override
     protected void parse() {
-        var pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=[(])");
         var lines = blockLines.iterator();
         while(lines.hasNext()) {
             var line = lines.next();
@@ -21,8 +21,8 @@ public class Select extends Parser {
                 var selectStat = lines.next();
                 var matcher = pattern.matcher(selectStat);
                 if (matcher.find()) {
-                    var time = matcher.group();
-                    matches.add(new Match().setOperator("Select").setTime(time));
+                    var time = matcher.group().trim().replace(",", ".");
+                    matches.add(new Match().setOperator("Select").setTime(Double.parseDouble(time)));
                 }
             }
         }

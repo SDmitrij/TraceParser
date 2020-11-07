@@ -24,7 +24,12 @@ public class Interaction {
 
     public void seed() {
         var sql = "CREATE TABLE IF NOT EXISTS 'matches' ('id' INTEGER PRIMARY KEY, 'operator' TEXT NOT NULL," +
-            "'time' TEXT NOT NULL);";
+            "'time' REAL NOT NULL);";
+        executeUpdate(sql);
+    }
+
+    public void clear() {
+        var sql = "DELETE FROM 'matches';";
         executeUpdate(sql);
     }
 
@@ -44,13 +49,19 @@ public class Interaction {
     }
 
     private void select() {
-        var res = executeQuery();
 
-    }
-
-    private void clear() {
-        var sql = "DELETE * FROM 'matches'";
-        executeUpdate(sql);
+        for (String operator : config.getOperators()) {
+            var sql = (String.format("SELECT SUM(time) AS 'total_time' " +
+                    "FROM matches WHERE operator = '%s';", operator));
+            var res = executeQuery(sql);
+            try {
+                if (res == null) return;
+                res.next();
+                System.out.printf("Total time for %s: %s%n", operator, res.getDouble("total_time"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void executeUpdate(String sql) {
@@ -63,10 +74,10 @@ public class Interaction {
         }
     }
 
-    private ResultSet executeQuery() {
+    private ResultSet executeQuery(String sql) {
         try {
             var stmt = connection.createStatement();
-            return stmt.executeQuery("SELECT * FROM 'matches'");
+            return stmt.executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }

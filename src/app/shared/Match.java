@@ -3,7 +3,7 @@ package app.shared;
 public class Match {
 
     private String operator;
-    private String time;
+    private Double time;
 
     public String getOperator() { return operator; }
 
@@ -12,9 +12,9 @@ public class Match {
         return this;
     }
 
-    public String getTime() { return time; }
+    public Double getTime() { return time; }
 
-    public Match setTime(String time) {
+    public Match setTime(Double time) {
         this.time = time;
         return this;
     }

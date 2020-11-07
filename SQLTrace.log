@@ -43,7 +43,7 @@ ALTER SESSION SET NLS_DATE_FORMAT='DD.MM.YYYY' NLS_NUMERIC_CHARACTERS=', '
 09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,001 BIND: username = MSA
 09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,001 BIND: userpassword = 
 09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,001 BIND: id_role = 1
-09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,000 BIND: program = Версия 7 Сборка 151.1 от 08.11.2007
+09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,000 BIND: program = Р’РµСЂСЃРёСЏ 7 РЎР±РѕСЂРєР° 151.1 РѕС‚ 08.11.2007
 09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,004 BIND: major = 7
 09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,001 BIND: minor = 151
 09.11.2007 11:59:18  SESSION unc_43158257 TIME: 0,001 BIND: build = 1
@@ -139,7 +139,7 @@ SELECT DISTINCT a.id_entity, a.name, a.table_name  FROM entity__r a JOIN preconf
 ----------------------------------------------------------------------------------------------------
 09.11.2007 11:59:29  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 80000017
 09.11.2007 11:59:29  SESSION unc_43157890 EXEC QUERY : 
-SELECT id_entity_page, name, id_entity_view, id_entity_view_filter, id_entity_query, query_select_mode, is_select, is_find, is_autoexecute_query  FROM preconfigured_view__r  WHERE id_entity = <<id_entity>> AND  is_find = 1  ORDER BY order_no, CASE LOWER(TRIM(name)) WHEN 'все' THEN 0 WHEN 'всё' THEN 0 ELSE 1 END, name
+SELECT id_entity_page, name, id_entity_view, id_entity_view_filter, id_entity_query, query_select_mode, is_select, is_find, is_autoexecute_query  FROM preconfigured_view__r  WHERE id_entity = <<id_entity>> AND  is_find = 1  ORDER BY order_no, CASE LOWER(TRIM(name)) WHEN 'РІСЃРµ' THEN 0 WHEN 'РІСЃС‘' THEN 0 ELSE 1 END, name
 09.11.2007 11:59:29  SESSION unc_43157890 TIME: 0,041 (PREPARE: 0,017) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 11:59:29  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 80000017
@@ -405,7 +405,7 @@ SELECT a.selector_caption, a.id_entity_class_parent, a.id_entity_parent, a.id_en
 09.11.2007 11:59:40  SESSION unc_43157890 EXEC QUERY : 
 SELECT r.id_attribute_child, a.id_entity_attribute, a.is_static_attribute, a.column_name
      , NVL(a.is_primary_key,0) +
-      ( SELECT SIGN(COUNT(*)) /* если есть аттр.PK не входящие в эту связь, то все аттр.обязательны */
+      ( SELECT SIGN(COUNT(*)) /* РµСЃР»Рё РµСЃС‚СЊ Р°С‚С‚СЂ.PK РЅРµ РІС…РѕРґСЏС‰РёРµ РІ СЌС‚Сѓ СЃРІСЏР·СЊ, С‚Рѕ РІСЃРµ Р°С‚С‚СЂ.РѕР±СЏР·Р°С‚РµР»СЊРЅС‹ */
         FROM entity_attribute__r B LEFT JOIN entity_relationship_attr__r D
           ON D.id_entity_parent = B.id_entity AND D.id_attribute_parent = B.id_entity_attribute
         WHERE B.is_primary_key=1
@@ -994,7 +994,7 @@ SELECT a.selector_caption, a.id_entity_class_parent, a.id_entity_parent, a.id_en
 09.11.2007 12:00:15  SESSION unc_43157890 EXEC QUERY : 
 SELECT r.id_attribute_child, a.id_entity_attribute, a.is_static_attribute, a.column_name
      , NVL(a.is_primary_key,0) +
-      ( SELECT SIGN(COUNT(*)) /* если есть аттр.PK не входящие в эту связь, то все аттр.обязательны */
+      ( SELECT SIGN(COUNT(*)) /* РµСЃР»Рё РµСЃС‚СЊ Р°С‚С‚СЂ.PK РЅРµ РІС…РѕРґСЏС‰РёРµ РІ СЌС‚Сѓ СЃРІСЏР·СЊ, С‚Рѕ РІСЃРµ Р°С‚С‚СЂ.РѕР±СЏР·Р°С‚РµР»СЊРЅС‹ */
         FROM entity_attribute__r B LEFT JOIN entity_relationship_attr__r D
           ON D.id_entity_parent = B.id_entity AND D.id_attribute_parent = B.id_entity_attribute
         WHERE B.is_primary_key=1
@@ -1346,7 +1346,7 @@ SELECT id_role AS id, name FROM system_role__r
 SELECT ROWNUM AS id_form_element
  , 'table_entity' AS adapter_class
  , A.id_role AS adapter_id
- , 5 AS id_vc_class /*флажок*/
+ , 5 AS id_vc_class /*С„Р»Р°Р¶РѕРє*/
 
  , packer.Concat(
        packer.param('id_entity', NULL, 'N', 80000038)
@@ -1424,7 +1424,7 @@ SELECT a.*, b.vfp_datatype AS datatype, 0 AS param_val_source  FROM menu_functio
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:04:00  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 15
 09.11.2007 12:04:00  SESSION unc_43157890 EXEC QUERY : 
-SELECT id_entity_page, name, id_entity_view, id_entity_view_filter, id_entity_query, query_select_mode, is_select, is_find, is_autoexecute_query  FROM preconfigured_view__r  WHERE id_entity = <<id_entity>> AND  is_find = 1  ORDER BY order_no, CASE LOWER(TRIM(name)) WHEN 'все' THEN 0 WHEN 'всё' THEN 0 ELSE 1 END, name
+SELECT id_entity_page, name, id_entity_view, id_entity_view_filter, id_entity_query, query_select_mode, is_select, is_find, is_autoexecute_query  FROM preconfigured_view__r  WHERE id_entity = <<id_entity>> AND  is_find = 1  ORDER BY order_no, CASE LOWER(TRIM(name)) WHEN 'РІСЃРµ' THEN 0 WHEN 'РІСЃС‘' THEN 0 ELSE 1 END, name
 09.11.2007 12:04:00  SESSION unc_43157890 TIME: 0,056 (PREPARE: 0,026) RECORD COUNT: 4
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:04:00  SESSION unc_43157890 TIME: 0,002 BIND: id_entity = 15
@@ -1685,7 +1685,7 @@ DECLARE m$action NUMBER(1) := <<action>>; m$id_entity NUMBER(1) := <<id_entity>>
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:04:58  SESSION unc_43158591 TIME: 0,001 BIND: list_ei = 64126217,64021475
 09.11.2007 12:04:58  SESSION unc_43158591 EXEC QUERY : 
-SELECT spr.agreement_no || ' ' || 'от' || ' ' || TO_CHAR(spr.agreement_date) AS name0, spr.id_entity_instance FROM agreement spr JOIN (SELECT DISTINCT A.column_value AS value FROM TABLE(StrToTableNumber(<<list_ei>>)) A) spr_list_ei ON spr.id_entity_instance = spr_list_ei.value
+SELECT spr.agreement_no || ' ' || 'РѕС‚' || ' ' || TO_CHAR(spr.agreement_date) AS name0, spr.id_entity_instance FROM agreement spr JOIN (SELECT DISTINCT A.column_value AS value FROM TABLE(StrToTableNumber(<<list_ei>>)) A) spr_list_ei ON spr.id_entity_instance = spr_list_ei.value
 09.11.2007 12:05:00  SESSION unc_43158591 TIME: 2,531 (PREPARE: 2,512) RECORD COUNT: 2
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:00  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 15
@@ -1774,52 +1774,52 @@ SELECT 1 AS cnt  FROM property__r  WHERE id_entity = <<id_entity>> AND  NVL(id_e
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,002 BIND: val1 = 320339
 09.11.2007 12:05:03  SESSION unc_43158591 EXEC QUERY : 
-SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Задолженность по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'Переплата по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Долгов (переплаты) нет') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
+SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Р—Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЊ РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'РџРµСЂРµРїР»Р°С‚Р° РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Р”РѕР»РіРѕРІ (РїРµСЂРµРїР»Р°С‚С‹) РЅРµС‚') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,183 (PREPARE: 0,158) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:03  SESSION unc_43158591 EXEC QUERY : 
-SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Задолженность по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'Переплата по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Долгов (переплаты) нет') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
+SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Р—Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЊ РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'РџРµСЂРµРїР»Р°С‚Р° РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Р”РѕР»РіРѕРІ (РїРµСЂРµРїР»Р°С‚С‹) РЅРµС‚') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,038 (PREPARE: 0,009) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:03  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Общая площадь:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
+SELECT 'РћР±С‰Р°СЏ РїР»РѕС‰Р°РґСЊ:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,097 (PREPARE: 0,076) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:03  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Общая площадь:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
+SELECT 'РћР±С‰Р°СЏ РїР»РѕС‰Р°РґСЊ:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,023 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:03  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:03  SESSION unc_43158591 EXEC QUERY : 
-SELECT  'Последний платеж: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' руб.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
+SELECT  'РџРѕСЃР»РµРґРЅРёР№ РїР»Р°С‚РµР¶: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' СЂСѓР±.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,043 (PREPARE: 0,028) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:04  SESSION unc_43158591 EXEC QUERY : 
-SELECT  'Последний платеж: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' руб.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
+SELECT  'РџРѕСЃР»РµРґРЅРёР№ РїР»Р°С‚РµР¶: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' СЂСѓР±.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,023 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:04  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество проживающих:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  временно отсутствующих:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР¶РёРІР°СЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  РІСЂРµРјРµРЅРЅРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,169 (PREPARE: 0,154) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:04  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество проживающих:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  временно отсутствующих:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР¶РёРІР°СЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  РІСЂРµРјРµРЅРЅРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,024 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,002 BIND: val1 = 320339
 09.11.2007 12:05:04  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество получателей льготы:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»СѓС‡Р°С‚РµР»РµР№ Р»СЊРіРѕС‚С‹:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,175 (PREPARE: 0,159) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:05:04  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество получателей льготы:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»СѓС‡Р°С‚РµР»РµР№ Р»СЊРіРѕС‚С‹:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
 09.11.2007 12:05:04  SESSION unc_43158591 TIME: 0,025 (PREPARE: 0,009) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:04  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 91,00
@@ -1837,7 +1837,7 @@ SELECT a.selector_caption, a.id_entity_class_parent, a.id_entity_parent, a.id_en
 09.11.2007 12:05:04  SESSION unc_43157890 EXEC QUERY : 
 SELECT r.id_attribute_child, a.id_entity_attribute, a.is_static_attribute, a.column_name
      , NVL(a.is_primary_key,0) +
-      ( SELECT SIGN(COUNT(*)) /* если есть аттр.PK не входящие в эту связь, то все аттр.обязательны */
+      ( SELECT SIGN(COUNT(*)) /* РµСЃР»Рё РµСЃС‚СЊ Р°С‚С‚СЂ.PK РЅРµ РІС…РѕРґСЏС‰РёРµ РІ СЌС‚Сѓ СЃРІСЏР·СЊ, С‚Рѕ РІСЃРµ Р°С‚С‚СЂ.РѕР±СЏР·Р°С‚РµР»СЊРЅС‹ */
         FROM entity_attribute__r B LEFT JOIN entity_relationship_attr__r D
           ON D.id_entity_parent = B.id_entity AND D.id_attribute_parent = B.id_entity_attribute
         WHERE B.is_primary_key=1
@@ -1861,7 +1861,7 @@ SELECT a.selector_caption, a.id_entity_class_parent, a.id_entity_parent, a.id_en
 09.11.2007 12:05:05  SESSION unc_43157890 EXEC QUERY : 
 SELECT r.id_attribute_child, a.id_entity_attribute, a.is_static_attribute, a.column_name
      , NVL(a.is_primary_key,0) +
-      ( SELECT SIGN(COUNT(*)) /* если есть аттр.PK не входящие в эту связь, то все аттр.обязательны */
+      ( SELECT SIGN(COUNT(*)) /* РµСЃР»Рё РµСЃС‚СЊ Р°С‚С‚СЂ.PK РЅРµ РІС…РѕРґСЏС‰РёРµ РІ СЌС‚Сѓ СЃРІСЏР·СЊ, С‚Рѕ РІСЃРµ Р°С‚С‚СЂ.РѕР±СЏР·Р°С‚РµР»СЊРЅС‹ */
         FROM entity_attribute__r B LEFT JOIN entity_relationship_attr__r D
           ON D.id_entity_parent = B.id_entity AND D.id_attribute_parent = B.id_entity_attribute
         WHERE B.is_primary_key=1
@@ -1891,7 +1891,7 @@ SELECT a.selector_caption, a.id_entity_class_parent, a.id_entity_parent, a.id_en
 09.11.2007 12:05:05  SESSION unc_43157890 EXEC QUERY : 
 SELECT r.id_attribute_child, a.id_entity_attribute, a.is_static_attribute, a.column_name
      , NVL(a.is_primary_key,0) +
-      ( SELECT SIGN(COUNT(*)) /* если есть аттр.PK не входящие в эту связь, то все аттр.обязательны */
+      ( SELECT SIGN(COUNT(*)) /* РµСЃР»Рё РµСЃС‚СЊ Р°С‚С‚СЂ.PK РЅРµ РІС…РѕРґСЏС‰РёРµ РІ СЌС‚Сѓ СЃРІСЏР·СЊ, С‚Рѕ РІСЃРµ Р°С‚С‚СЂ.РѕР±СЏР·Р°С‚РµР»СЊРЅС‹ */
         FROM entity_attribute__r B LEFT JOIN entity_relationship_attr__r D
           ON D.id_entity_parent = B.id_entity AND D.id_attribute_parent = B.id_entity_attribute
         WHERE B.is_primary_key=1
@@ -1925,7 +1925,7 @@ SELECT a.id_entity_attribute, a.is_static_attribute, a.column_name, b.vfp_dataty
 09.11.2007 12:05:06  SESSION unc_43158591 TIME: 0,001 BIND: e10186Attr80000643 = 680,0000000000
 09.11.2007 12:05:06  SESSION unc_43158591 TIME: 0,001 BIND: e10186Attr80000644 = 0
 09.11.2007 12:05:06  SESSION unc_43158591 EXEC QUERY : 
-SELECT 3394 AS id_form_element, spr_66.agent_full_name || ' ' || spr_67.name || ' ' || 'договор' || ' ' || spr_68.agreement_no || ' ' || 'от' || ' ' || TO_CHAR(spr_68.agreement_date) AS name0 , spr.id_entity_instance FROM agreement_side spr JOIN agent spr_66 ON spr.id_agent = spr_66.id_agent LEFT JOIN agent_department spr_67 ON spr.id_agent = spr_67.id_agent AND spr.id_agent_department = spr_67.id_agent_department JOIN agreement spr_68 ON spr.id_agree = spr_68.id_agree  WHERE spr.id_agree=<<e3394Attr191>> AND spr.id_agent=<<e3394Attr993>>
+SELECT 3394 AS id_form_element, spr_66.agent_full_name || ' ' || spr_67.name || ' ' || 'РґРѕРіРѕРІРѕСЂ' || ' ' || spr_68.agreement_no || ' ' || 'РѕС‚' || ' ' || TO_CHAR(spr_68.agreement_date) AS name0 , spr.id_entity_instance FROM agreement_side spr JOIN agent spr_66 ON spr.id_agent = spr_66.id_agent LEFT JOIN agent_department spr_67 ON spr.id_agent = spr_67.id_agent AND spr.id_agent_department = spr_67.id_agent_department JOIN agreement spr_68 ON spr.id_agree = spr_68.id_agree  WHERE spr.id_agree=<<e3394Attr191>> AND spr.id_agent=<<e3394Attr993>>
 UNION 
 SELECT 4991 AS id_form_element, spr_66.agent_full_name || ' ' || spr_67.name AS name0 , spr.id_entity_instance FROM agreement_side spr JOIN agent spr_66 ON spr.id_agent = spr_66.id_agent LEFT JOIN agent_department spr_67 ON spr.id_agent = spr_67.id_agent AND spr.id_agent_department = spr_67.id_agent_department  WHERE spr.id_agree=<<e4991Attr191>> AND spr.id_agent=<<e4991Attr993>>
 UNION 
@@ -1955,33 +1955,33 @@ DECLARE m$action NUMBER(1) := <<action>>; m$id_entity NUMBER(1) := <<id_entity>>
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 315785
 09.11.2007 12:05:10  SESSION unc_43158591 EXEC QUERY : 
-SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Задолженность по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'Переплата по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Долгов (переплаты) нет') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
+SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Р—Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЊ РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'РџРµСЂРµРїР»Р°С‚Р° РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Р”РѕР»РіРѕРІ (РїРµСЂРµРїР»Р°С‚С‹) РЅРµС‚') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,040 (PREPARE: 0,017) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,002 BIND: val1 = 315785
 09.11.2007 12:05:10  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Общая площадь:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
+SELECT 'РћР±С‰Р°СЏ РїР»РѕС‰Р°РґСЊ:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,024 (PREPARE: 0,009) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 315785
 09.11.2007 12:05:10  SESSION unc_43158591 EXEC QUERY : 
-SELECT  'Последний платеж: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' руб.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
+SELECT  'РџРѕСЃР»РµРґРЅРёР№ РїР»Р°С‚РµР¶: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' СЂСѓР±.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,023 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,000 BIND: val1 = 315785
 09.11.2007 12:05:10  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество проживающих:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  временно отсутствующих:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР¶РёРІР°СЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  РІСЂРµРјРµРЅРЅРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,032 (PREPARE: 0,017) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 315785
 09.11.2007 12:05:10  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество получателей льготы:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»СѓС‡Р°С‚РµР»РµР№ Р»СЊРіРѕС‚С‹:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,024 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,001 BIND: Attr191 = 315785
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,000 BIND: Attr993 = 491001
 09.11.2007 12:05:10  SESSION unc_43158591 EXEC QUERY : 
-SELECT spr_66.agent_full_name || ' ' || spr_67.name || ' ' || 'договор' || ' ' || spr_68.agreement_no || ' ' || 'от' || ' ' || TO_CHAR(spr_68.agreement_date) AS name0 , spr.id_entity_instance FROM agreement_side spr JOIN agent spr_66 ON spr.id_agent = spr_66.id_agent LEFT JOIN agent_department spr_67 ON spr.id_agent = spr_67.id_agent AND spr.id_agent_department = spr_67.id_agent_department JOIN agreement spr_68 ON spr.id_agree = spr_68.id_agree  WHERE spr.id_agree=<<Attr191>> AND spr.id_agent=<<Attr993>>
+SELECT spr_66.agent_full_name || ' ' || spr_67.name || ' ' || 'РґРѕРіРѕРІРѕСЂ' || ' ' || spr_68.agreement_no || ' ' || 'РѕС‚' || ' ' || TO_CHAR(spr_68.agreement_date) AS name0 , spr.id_entity_instance FROM agreement_side spr JOIN agent spr_66 ON spr.id_agent = spr_66.id_agent LEFT JOIN agent_department spr_67 ON spr.id_agent = spr_67.id_agent AND spr.id_agent_department = spr_67.id_agent_department JOIN agreement spr_68 ON spr.id_agree = spr_68.id_agree  WHERE spr.id_agree=<<Attr191>> AND spr.id_agent=<<Attr993>>
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,041 (PREPARE: 0,022) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:10  SESSION unc_43158591 TIME: 0,001 BIND: Attr191 = 315785
@@ -2142,7 +2142,7 @@ LEFT JOIN (work_job_position p
 JOIN work_type t ON t.id_work_type=a.id_work_type
    WHERE (a.id_agree= <<FilterP1>> ) 
 ORDER BY p_work_request.GetWorkAdressInfo(a.id_work_request)
-09.11.2007 12:05:15  SESSION unc_43158591 TIME: 0,450 (PREPARE: 0,450) ERROR CODE:        904 ERROR MESSAGE: ORA-00904: "PP"."J_NO": недопустимый идентификатор
+09.11.2007 12:05:15  SESSION unc_43158591 TIME: 0,450 (PREPARE: 0,450) ERROR CODE:        904 ERROR MESSAGE: ORA-00904: "PP"."J_NO": РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ
 
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:21  SESSION unc_43177585 EXEC QUERY : 
@@ -2189,7 +2189,7 @@ LEFT JOIN (work_job_position p
 JOIN work_type t ON t.id_work_type=a.id_work_type
    WHERE (a.id_agree= <<FilterP1>> ) 
 ORDER BY p_work_request.GetWorkAdressInfo(a.id_work_request)
-09.11.2007 12:05:50  SESSION unc_43158591 TIME: 0,033 (PREPARE: 0,033) ERROR CODE:        904 ERROR MESSAGE: ORA-00904: "PP"."J_NO": недопустимый идентификатор
+09.11.2007 12:05:50  SESSION unc_43158591 TIME: 0,033 (PREPARE: 0,033) ERROR CODE:        904 ERROR MESSAGE: ORA-00904: "PP"."J_NO": РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ
 
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:05:57  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 80000018
@@ -2869,27 +2869,27 @@ DECLARE m$action NUMBER(1) := <<action>>; m$id_entity NUMBER(1) := <<id_entity>>
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:06:44  SESSION unc_43158591 EXEC QUERY : 
-SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Задолженность по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'Переплата по договору составляет ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Долгов (переплаты) нет') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
+SELECT DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 'Р—Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЊ РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), -1, 'РџРµСЂРµРїР»Р°С‚Р° РїРѕ РґРѕРіРѕРІРѕСЂСѓ СЃРѕСЃС‚Р°РІР»СЏРµС‚ ' || TO_CHAR(ABS(NVL(SUM(b.balans_summa), 0))), 'Р”РѕР»РіРѕРІ (РїРµСЂРµРїР»Р°С‚С‹) РЅРµС‚') AS val2,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)), 1, 255, 0) AS val3,DECODE(SIGN(NVL(SUM(b.balans_summa), 0)),  -1, 255, 0) AS val4,MIN(s.id_object) AS val16 FROM agreement_sale_info s LEFT JOIN agreement_sale_agent_account a ON s.id_agree=a.id_agree JOIN agent_account_cur_balans b ON a.id_agent_account  = b.id_agent_account WHERE s.id_agree = <<val1>>
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,032 (PREPARE: 0,009) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:06:44  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Общая площадь:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
+SELECT 'РћР±С‰Р°СЏ РїР»РѕС‰Р°РґСЊ:  ' || NVL(obj.sq_all, 0) AS val2 FROM agreement_sale_info s JOIN object_info obj ON s.id_object = obj.id_object WHERE s.id_agree = <<val1>>
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,040 (PREPARE: 0,009) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:06:44  SESSION unc_43158591 EXEC QUERY : 
-SELECT  'Последний платеж: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' руб.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
+SELECT  'РџРѕСЃР»РµРґРЅРёР№ РїР»Р°С‚РµР¶: ' || MAX(aa.operation_date) || '  -  ' || (-SUM(aa.summa)) || ' СЂСѓР±.' AS val2 FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>> AND aa.operation_date =(SELECT MAX(aa.operation_date) FROM agent_account_operation aa WHERE aa.id_operation_type = 4 AND aa.id_agree = <<val1>>)
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,023 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:06:44  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество проживающих:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  временно отсутствующих:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРѕР¶РёРІР°СЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,1,1,3,1,4,-1,0)),0) || ',  РІСЂРµРјРµРЅРЅРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‰РёС…:  ' || NVL(SUM(DECODE(r.id_residence_type,2,1,0)),0) AS val2 FROM residence r JOIN agreement_sale_info a ON r.id_object = a.id_object WHERE  SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND a.id_agree = <<val1>>
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,024 (PREPARE: 0,009) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,001 BIND: val1 = 320339
 09.11.2007 12:06:44  SESSION unc_43158591 EXEC QUERY : 
-SELECT 'Количество получателей льготы:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
+SELECT 'РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕР»СѓС‡Р°С‚РµР»РµР№ Р»СЊРіРѕС‚С‹:  ' || NVL(COUNT(distinct id_agent_recepient), 0) AS val2 FROM registered_lgot r WHERE SYSDATE >= r.begin_date AND SYSDATE < NVL(r.end_date, TO_DATE('01019999','ddmmyyyy')) AND id_agree = <<val1>>
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,024 (PREPARE: 0,008) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:06:44  SESSION unc_43158591 TIME: 0,001 BIND: Attr191 = 320339
@@ -3298,16 +3298,16 @@ SELECT id_user_session_create,create_date FROM entity_instance__r WHERE id_entit
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:16:36  SESSION unc_43158591 TIME: 0,001 BIND: Attr80000186 = 149049
 09.11.2007 12:16:36  SESSION unc_43158591 EXEC QUERY : 
-SELECT spr_200.user_full_name || ' ' || 'Начало' || ' ' || TO_CHAR(spr.begin_date) || ' ' || 'ИД сессии=' || ' ' || TO_CHAR(spr.id_user_session) AS name0 , spr.id_entity_instance FROM user_session__r spr JOIN system_user__r spr_200 ON spr.id_user = spr_200.id_user  WHERE spr.id_user_session=<<Attr80000186>>
+SELECT spr_200.user_full_name || ' ' || 'РќР°С‡Р°Р»Рѕ' || ' ' || TO_CHAR(spr.begin_date) || ' ' || 'РР” СЃРµСЃСЃРёРё=' || ' ' || TO_CHAR(spr.id_user_session) AS name0 , spr.id_entity_instance FROM user_session__r spr JOIN system_user__r spr_200 ON spr.id_user = spr_200.id_user  WHERE spr.id_user_session=<<Attr80000186>>
 09.11.2007 12:16:36  SESSION unc_43158591 TIME: 0,054 (PREPARE: 0,037) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:16:44  SESSION unc_43177585 TIME: 0,001 BIND: Id_entity_instance = 6896792,0000000000
 09.11.2007 12:16:44  SESSION unc_43177585 TIME: 0,001 BIND: action = 0
 09.11.2007 12:16:44  SESSION unc_43177585 EXEC SQL : 
 DECLARE BEGIN validate_ei.validate_ei_by_list(<<Id_entity_instance>>,<<action>>); END;
-09.11.2007 12:16:45  SESSION unc_43177585 TIME: 0,611 ERROR CODE:      20000 ERROR MESSAGE: ORA-20000: ORA-00904: "CHDM"."ID_MAIN_AGREE": недопустимый идентификатор Query: SELECT chdm.id_entity_instance, 15 FROM ba7_data.acquittance_agree par JOIN ba7_data.agreement parm ON par.id_agree=parm.id_agree  JOIN ba7_data.agreement chdm  ON par.id_agree=chdm.id_main_agree  WHERE parm.id_entity_instance = :1 AND chdm.id_entity_instance IS NOT NULL MINUS SELECT id_entity_instance, id_entity FROM repl_entity_instance
-ORA-06512: на  "BA7_REP.REPLICATION", line 114
-ORA-06512: на  "BA7_REP.REPLICATION", line
+09.11.2007 12:16:45  SESSION unc_43177585 TIME: 0,611 ERROR CODE:      20000 ERROR MESSAGE: ORA-20000: ORA-00904: "CHDM"."ID_MAIN_AGREE": РЅРµРґРѕРїСѓСЃС‚РёРјС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Query: SELECT chdm.id_entity_instance, 15 FROM ba7_data.acquittance_agree par JOIN ba7_data.agreement parm ON par.id_agree=parm.id_agree  JOIN ba7_data.agreement chdm  ON par.id_agree=chdm.id_main_agree  WHERE parm.id_entity_instance = :1 AND chdm.id_entity_instance IS NOT NULL MINUS SELECT id_entity_instance, id_entity FROM repl_entity_instance
+ORA-06512: РЅР°  "BA7_REP.REPLICATION", line 114
+ORA-06512: РЅР°  "BA7_REP.REPLICATION", line
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:16:53  SESSION unc_43177585 TIME: 0,001 BIND: Id_entity_instance = 24064044,0000000000
 09.11.2007 12:16:53  SESSION unc_43177585 TIME: 0,000 BIND: action = 0
@@ -3331,28 +3331,28 @@ SELECT spr.name AS name0 , spr.id_entity_instance FROM entity__r spr  WHERE spr.
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:17:12  SESSION unc_43157890 TIME: 0,001 BIND: id_entity = 15
 09.11.2007 12:17:12  SESSION unc_43157890 EXEC QUERY : 
-SELECT A.*, NVL(b.name, ' ') AS class_name, NVL(C.is_null_attribute,0) AS is_null_attribute ,DECODE(A.class,1,'Атрибут',2,'Связь','Свойство') type,D.length, D.precision, D.scale FROM entity_characteristic A  LEFT JOIN entity_class__r B ON A.id_entity = B.id_entity AND A.id_entity_class = B.id_entity_class  LEFT JOIN entity_attribute__r C ON A.id_entity=C.id_entity AND A.id_entity_attribute=C.id_entity_attribute  LEFT JOIN dbcolumn_info__r D ON A.id_entity=D.id_entity AND A.id_entity_attribute=D.id_entity_attribute  WHERE a.id_entity = <<id_entity>> ORDER BY a.name
+SELECT A.*, NVL(b.name, ' ') AS class_name, NVL(C.is_null_attribute,0) AS is_null_attribute ,DECODE(A.class,1,'РђС‚СЂРёР±СѓС‚',2,'РЎРІСЏР·СЊ','РЎРІРѕР№СЃС‚РІРѕ') type,D.length, D.precision, D.scale FROM entity_characteristic A  LEFT JOIN entity_class__r B ON A.id_entity = B.id_entity AND A.id_entity_class = B.id_entity_class  LEFT JOIN entity_attribute__r C ON A.id_entity=C.id_entity AND A.id_entity_attribute=C.id_entity_attribute  LEFT JOIN dbcolumn_info__r D ON A.id_entity=D.id_entity AND A.id_entity_attribute=D.id_entity_attribute  WHERE a.id_entity = <<id_entity>> ORDER BY a.name
 09.11.2007 12:17:13  SESSION unc_43157890 TIME: 1,042 (PREPARE: 0,866) RECORD COUNT: 111
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:17:20  SESSION unc_43158591 TIME: 0,001 BIND: xml = <?xml version="1.0" encoding="windows-1251"?><query root_entity="15" root_entity_alias="qb_main_alias" entity_alias_prefix="qb_"><select><field><attr><id_attr>213</id_attr></attr></field></select></query>
 09.11.2007 12:17:20  SESSION unc_43158591 EXEC QUERY : 
 SELECT A.B.sql_select AS sql_select, A.B.sql_from AS sql_from, A.B.sql_where AS sql_where, A.B.sql_group AS sql_group,A.B.sql_having AS sql_having,A.B.sql_order AS sql_order FROM (SELECT xml2sql(<<xml>>) AS B FROM dual) A
-09.11.2007 12:18:12  SESSION unc_43158591 TIME: 51,575 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: принят сигнал конца файла по коммуникационному каналу
+09.11.2007 12:18:12  SESSION unc_43158591 TIME: 51,575 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: РїСЂРёРЅСЏС‚ СЃРёРіРЅР°Р» РєРѕРЅС†Р° С„Р°Р№Р»Р° РїРѕ РєРѕРјРјСѓРЅРёРєР°С†РёРѕРЅРЅРѕРјСѓ РєР°РЅР°Р»Сѓ
 
 09.11.2007 12:18:14  SESSION unc_43158591 TIME: 1,778 RESTORE CONNECTION 1/5 : OK
-09.11.2007 12:18:50  SESSION unc_43158591 TIME: 36,511 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: принят сигнал конца файла по коммуникационному каналу
+09.11.2007 12:18:50  SESSION unc_43158591 TIME: 36,511 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: РїСЂРёРЅСЏС‚ СЃРёРіРЅР°Р» РєРѕРЅС†Р° С„Р°Р№Р»Р° РїРѕ РєРѕРјРјСѓРЅРёРєР°С†РёРѕРЅРЅРѕРјСѓ РєР°РЅР°Р»Сѓ
 
 09.11.2007 12:18:53  SESSION unc_43158591 TIME: 2,911 RESTORE CONNECTION 2/5 : OK
-09.11.2007 12:19:28  SESSION unc_43158591 TIME: 34,993 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: принят сигнал конца файла по коммуникационному каналу
+09.11.2007 12:19:28  SESSION unc_43158591 TIME: 34,993 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: РїСЂРёРЅСЏС‚ СЃРёРіРЅР°Р» РєРѕРЅС†Р° С„Р°Р№Р»Р° РїРѕ РєРѕРјРјСѓРЅРёРєР°С†РёРѕРЅРЅРѕРјСѓ РєР°РЅР°Р»Сѓ
 
 09.11.2007 12:19:29  SESSION unc_43158591 TIME: 1,145 RESTORE CONNECTION 3/5 : OK
-09.11.2007 12:20:06  SESSION unc_43158591 TIME: 36,563 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: принят сигнал конца файла по коммуникационному каналу
+09.11.2007 12:20:06  SESSION unc_43158591 TIME: 36,563 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: РїСЂРёРЅСЏС‚ СЃРёРіРЅР°Р» РєРѕРЅС†Р° С„Р°Р№Р»Р° РїРѕ РєРѕРјРјСѓРЅРёРєР°С†РёРѕРЅРЅРѕРјСѓ РєР°РЅР°Р»Сѓ
 
 09.11.2007 12:20:06  SESSION unc_43158591 TIME: 0,169 RESTORE CONNECTION 4/5 : OK
-09.11.2007 12:20:49  SESSION unc_43158591 TIME: 43,153 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: принят сигнал конца файла по коммуникационному каналу
+09.11.2007 12:20:49  SESSION unc_43158591 TIME: 43,153 ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: РїСЂРёРЅСЏС‚ СЃРёРіРЅР°Р» РєРѕРЅС†Р° С„Р°Р№Р»Р° РїРѕ РєРѕРјРјСѓРЅРёРєР°С†РёРѕРЅРЅРѕРјСѓ РєР°РЅР°Р»Сѓ
 
 09.11.2007 12:20:49  SESSION unc_43158591 TIME: 0,139 RESTORE CONNECTION 5/5 : OK
-09.11.2007 12:21:29  SESSION unc_43158591 TIME: 40,176 (PREPARE: 40,176) ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: принят сигнал конца файла по коммуникационному каналу
+09.11.2007 12:21:29  SESSION unc_43158591 TIME: 40,176 (PREPARE: 40,176) ERROR CODE:       3113 ERROR MESSAGE: ORA-03113: РїСЂРёРЅСЏС‚ СЃРёРіРЅР°Р» РєРѕРЅС†Р° С„Р°Р№Р»Р° РїРѕ РєРѕРјРјСѓРЅРёРєР°С†РёРѕРЅРЅРѕРјСѓ РєР°РЅР°Р»Сѓ
 
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:22:18  SESSION unc_43158591 TIME: 0,001 BIND: FilterP1 = 2493638
@@ -3361,7 +3361,7 @@ SELECT TO_CHAR(a.id_calc_operation_group) AS c1
 ,a592.name AS c8996
 ,a.id_entity_instance AS id_entity_instance
   FROM calc_operation_group a    LEFT  JOIN agent_account a592 ON a.id_agent_account=a592.id_agent_account     WHERE (a.id_billdoc= <<FilterP1>> ) 
-09.11.2007 12:22:18  SESSION unc_43158591 TIME: 0,006 ERROR CODE:       3114 ERROR MESSAGE: ORA-03114: нет связи с ORACLE
+09.11.2007 12:22:18  SESSION unc_43158591 TIME: 0,006 ERROR CODE:       3114 ERROR MESSAGE: ORA-03114: РЅРµС‚ СЃРІСЏР·Рё СЃ ORACLE
 
 09.11.2007 12:22:18  SESSION unc_43158591 TIME: 0,221 RESTORE CONNECTION 1/5 : OK
 09.11.2007 12:22:18  SESSION unc_43158591 TIME: 0,053 (PREPARE: 0,031) RECORD COUNT: 1
@@ -3600,13 +3600,13 @@ SELECT s.id_billdoc, s.id_agent_account,    y.name, y.account_no, sysdate AS sal
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:23:14  SESSION unc_44592786 TIME: 0,001 BIND: id_operation_for_ei = 261095,000000000000000000
 09.11.2007 12:23:14  SESSION unc_44592786 EXEC QUERY : 
-SELECT /* Пред.счет-счет выставленный перед текущим. in_saldo - сумма долга после выставления пред. счета;  pay_summa(redo_summa, sub_summa,out_summa) - сумма платежей(перерасчетов(сторнированно),субсидий,сумм переведенных с этого лицевого) с момента  выставления пред.счета до текущего счета; out_saldo - общий долг на момент выставления текущего счета, bill_sum - сумма по счету в разрезе л/с */            s.id_billdoc, NVL(s.prev_bill_date,(SELECT  r_a.begin_date FROM agreement_sale_agent_account r_s JOIN agreement_sale r_a ON r_a.id_agree=r_s.id_agree WHERE r_s.id_agent_account=a.id_agent_account)) AS prev_bill_date, s.bill_date,             (s.bill_balans_summa-s.all_summa)*100 AS in_saldo, /*сумма долга после выставления пред. счета для данного л/с*/            (s.summa4+ s.summa6)*100 AS pay_summa,                                  /* сумма платежей  с момента выставления пред. счета до текущего счета для данного л/с*/            s.summa3*100 AS redo_summa,                                                          /* сумма перерасчетов(сторниров.)  с момента выставления пред. счета до текущего счета для данного л/с*/            s.summa7*100 AS sub_summa,                                                           /* сумма субсидий  с момента выставления пред. счета до текущего счета для данного л/с*/            s.summa5*100 AS out_summa,                                                            /* сумма переведенная на другие л/с  с момента выставления пред. счета до текущего счета для данного л/с*/            s.bill_balans_summa*100 AS out_saldo,                                            /* баланс  по данному л/с после выстовления текущего счета*/            s.summa8*100 AS bill_summa,                                       /* сумма счета проведенная по данному л/с*/            a.account_no, a.name      FROM  agent_account a ,  bill tq_bill, operation_entity_instance__r tq_oei, bill_account_balans_sum s      WHERE s.id_agent_account = a.id_agent_account AND s.id_billdoc = tq_bill.id_billdoc AND tq_bill.id_entity_instance=tq_oei.id_entity_instance AND tq_oei.id_operation=<<id_operation_for_ei>>
+SELECT /* РџСЂРµРґ.СЃС‡РµС‚-СЃС‡РµС‚ РІС‹СЃС‚Р°РІР»РµРЅРЅС‹Р№ РїРµСЂРµРґ С‚РµРєСѓС‰РёРј. in_saldo - СЃСѓРјРјР° РґРѕР»РіР° РїРѕСЃР»Рµ РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ. СЃС‡РµС‚Р°;  pay_summa(redo_summa, sub_summa,out_summa) - СЃСѓРјРјР° РїР»Р°С‚РµР¶РµР№(РїРµСЂРµСЂР°СЃС‡РµС‚РѕРІ(СЃС‚РѕСЂРЅРёСЂРѕРІР°РЅРЅРѕ),СЃСѓР±СЃРёРґРёР№,СЃСѓРјРј РїРµСЂРµРІРµРґРµРЅРЅС‹С… СЃ СЌС‚РѕРіРѕ Р»РёС†РµРІРѕРіРѕ) СЃ РјРѕРјРµРЅС‚Р°  РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ.СЃС‡РµС‚Р° РґРѕ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р°; out_saldo - РѕР±С‰РёР№ РґРѕР»Рі РЅР° РјРѕРјРµРЅС‚ РІС‹СЃС‚Р°РІР»РµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р°, bill_sum - СЃСѓРјРјР° РїРѕ СЃС‡РµС‚Сѓ РІ СЂР°Р·СЂРµР·Рµ Р»/СЃ */            s.id_billdoc, NVL(s.prev_bill_date,(SELECT  r_a.begin_date FROM agreement_sale_agent_account r_s JOIN agreement_sale r_a ON r_a.id_agree=r_s.id_agree WHERE r_s.id_agent_account=a.id_agent_account)) AS prev_bill_date, s.bill_date,             (s.bill_balans_summa-s.all_summa)*100 AS in_saldo, /*СЃСѓРјРјР° РґРѕР»РіР° РїРѕСЃР»Рµ РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ. СЃС‡РµС‚Р° РґР»СЏ РґР°РЅРЅРѕРіРѕ Р»/СЃ*/            (s.summa4+ s.summa6)*100 AS pay_summa,                                  /* СЃСѓРјРјР° РїР»Р°С‚РµР¶РµР№  СЃ РјРѕРјРµРЅС‚Р° РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ. СЃС‡РµС‚Р° РґРѕ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р° РґР»СЏ РґР°РЅРЅРѕРіРѕ Р»/СЃ*/            s.summa3*100 AS redo_summa,                                                          /* СЃСѓРјРјР° РїРµСЂРµСЂР°СЃС‡РµС‚РѕРІ(СЃС‚РѕСЂРЅРёСЂРѕРІ.)  СЃ РјРѕРјРµРЅС‚Р° РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ. СЃС‡РµС‚Р° РґРѕ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р° РґР»СЏ РґР°РЅРЅРѕРіРѕ Р»/СЃ*/            s.summa7*100 AS sub_summa,                                                           /* СЃСѓРјРјР° СЃСѓР±СЃРёРґРёР№  СЃ РјРѕРјРµРЅС‚Р° РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ. СЃС‡РµС‚Р° РґРѕ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р° РґР»СЏ РґР°РЅРЅРѕРіРѕ Р»/СЃ*/            s.summa5*100 AS out_summa,                                                            /* СЃСѓРјРјР° РїРµСЂРµРІРµРґРµРЅРЅР°СЏ РЅР° РґСЂСѓРіРёРµ Р»/СЃ  СЃ РјРѕРјРµРЅС‚Р° РІС‹СЃС‚Р°РІР»РµРЅРёСЏ РїСЂРµРґ. СЃС‡РµС‚Р° РґРѕ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р° РґР»СЏ РґР°РЅРЅРѕРіРѕ Р»/СЃ*/            s.bill_balans_summa*100 AS out_saldo,                                            /* Р±Р°Р»Р°РЅСЃ  РїРѕ РґР°РЅРЅРѕРјСѓ Р»/СЃ РїРѕСЃР»Рµ РІС‹СЃС‚РѕРІР»РµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ СЃС‡РµС‚Р°*/            s.summa8*100 AS bill_summa,                                       /* СЃСѓРјРјР° СЃС‡РµС‚Р° РїСЂРѕРІРµРґРµРЅРЅР°СЏ РїРѕ РґР°РЅРЅРѕРјСѓ Р»/СЃ*/            a.account_no, a.name      FROM  agent_account a ,  bill tq_bill, operation_entity_instance__r tq_oei, bill_account_balans_sum s      WHERE s.id_agent_account = a.id_agent_account AND s.id_billdoc = tq_bill.id_billdoc AND tq_bill.id_entity_instance=tq_oei.id_entity_instance AND tq_oei.id_operation=<<id_operation_for_ei>>
 09.11.2007 12:23:16  SESSION unc_44592786 TIME: 2,210 (PREPARE: 2,165) RECORD COUNT: 2
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:23:16  SESSION unc_44592786 TIME: 0,001 BIND: RPar1 = 1,000000000000000000
 09.11.2007 12:23:16  SESSION unc_44592786 TIME: 0,001 BIND: id_operation_for_ei = 261095,000000000000000000
 09.11.2007 12:23:16  SESSION unc_44592786 EXEC QUERY : 
-SELECT b.id_billdoc, b.bill_no, b.bill_date, b.info, b.bill_period,  b.customer_name, b.seller_name,             a.id_agree, a.agreement_no AS agree_info,               NVL2( r_589.name, '('||TRIM(r_589.name)||')', '' ) AS name_kc,             t.bill_caption, t.is_print_nds_summa, t.is_show_account_info, t.is_show_oborot_bill AS is_oborot, t.count_receipt, t.type_pay_summa,             t.is_show_subsidy_summa AS is_subsidy, t.is_visible_balans AS is_balans, RPAD(t.pay_purpose,220) AS  purpose, t.is_penalty_fee_print AS is_peni_print,            t.is_no_visible_bill AS is_no_bill, t.type_together_page AS together,             f.summa_penalty_fee*100 AS sum_peni,  s.summa*100 AS add_summa, /*0-общий долг по договору, после выставления счета;1-начисление по счету;2-балан по счету(т.е. с учетом всех привязок);3-если до счета переплата, то баланс по договору, иначе начисление по счету;4-общий долг по договору на момент печати*/  DECODE(t.type_pay_summa,0, GetAgreementBalans(b.id_agree, b.bill_date), 1, b.summa_total, 2, q.summa_balans, 3,          (CASE WHEN GetAgreementBalans(b.id_agree, b.bill_date)-b.summa_total>0 THEN b.summa_total ELSE GetAgreementBalans(b.id_agree, b.bill_date) END),  4, GetAgreementBalans(b.id_agree, sysdate),b.summa_total)*100 AS summa,              b.summa_total*100 AS bill_summa, -q.summa_subsid*100 AS subsid_sum, 		i.message, RPAD(o.adres,200) AS adres, RPAD(u.value,200) AS adres_go,   RPAD(DECODE(<<RPar1>>, 2, b.customer_name, 3,  a.agreement_no, 4, TO_CHAR(b.bill_date), NVL(u.value, o.city_name||o.street_name||o.house||o.flat))||to_char(t.type_together_page),200) AS f_order,   RPAD(y.phones,50) AS phone_cent, y.org_name AS name_cent, RPAD(y.bank_attr,240) AS bank_cent, y.address AS adres_cent, y.bill_note,   DECODE(y.org_name||y.address||y.bill_note||i.message, null, 0, 1) AS is_note    /*если все эти поля пустvе, то в примечании счета вvводить нечего и поэтому is_note=0*/FROM (((((bill_info b JOIN agreement a ON b.id_agree = a.id_agree )/*связывается с договором, а не с представлением дог-ра продажи т.к. счет может бvть вvставлен не                                                                                                                               на договор продажи а на другой договор*/               JOIN (((((agreement_sale_info e                                      INNER JOIN agreement_sale_category y ON e.id_agreement_sale_category = y.id_agreement_sale_category AND e.id_agent_seller = y.id_agent    LEFT JOIN  (  SELECT   r_589.id_entity_instance,    r_f.name   FROM      udp_object_property__r r_589                                                  LEFT  JOIN reference_element__r r_f ON r_f.id_reference_element=r_589.id_reference_element  AND r_f.id_reference=r_589.id_reference      WHERE  r_589.id_property=589   )  r_589  ON r_589.id_entity_instance=y.id_entity_instance   )                                      JOIN (SELECT x.id_agree, -SUM(NVL(supported_balans,0)) AS summa  FROM agreement_sale_agent_account x                                                                              JOIN agent_account w ON x.id_agent_account=w.id_agent_account                                                                 GROUP BY x.id_agree) s ON s.id_agree=e.id_agree)                                     LEFT JOIN object_info o ON e.id_object = o.id_object)                                      LEFT JOIN udp_object_property__r u ON e.id_entity_instance = u.id_entity_instance AND u.id_property =200) 					     LEFT JOIN information_message i ON e.id_information_message = i.id_information_message)                                                   ON b.id_agree = e.id_agree )                  JOIN bill_type t ON b.id_bill_type=t.id_bill_type)                 JOIN bill_saldo q ON b.id_billdoc=q.id_billdoc)                 JOIN bill_penalty_fee f ON b.id_billdoc=f.id_billdoc) ,  bill tq_bill, operation_entity_instance__r tq_oei  WHERE b.id_billdoc = tq_bill.id_billdoc AND tq_bill.id_entity_instance=tq_oei.id_entity_instance AND tq_oei.id_operation=<<id_operation_for_ei>>
+SELECT b.id_billdoc, b.bill_no, b.bill_date, b.info, b.bill_period,  b.customer_name, b.seller_name,             a.id_agree, a.agreement_no AS agree_info,               NVL2( r_589.name, '('||TRIM(r_589.name)||')', '' ) AS name_kc,             t.bill_caption, t.is_print_nds_summa, t.is_show_account_info, t.is_show_oborot_bill AS is_oborot, t.count_receipt, t.type_pay_summa,             t.is_show_subsidy_summa AS is_subsidy, t.is_visible_balans AS is_balans, RPAD(t.pay_purpose,220) AS  purpose, t.is_penalty_fee_print AS is_peni_print,            t.is_no_visible_bill AS is_no_bill, t.type_together_page AS together,             f.summa_penalty_fee*100 AS sum_peni,  s.summa*100 AS add_summa, /*0-РѕР±С‰РёР№ РґРѕР»Рі РїРѕ РґРѕРіРѕРІРѕСЂСѓ, РїРѕСЃР»Рµ РІС‹СЃС‚Р°РІР»РµРЅРёСЏ СЃС‡РµС‚Р°;1-РЅР°С‡РёСЃР»РµРЅРёРµ РїРѕ СЃС‡РµС‚Сѓ;2-Р±Р°Р»Р°РЅ РїРѕ СЃС‡РµС‚Сѓ(С‚.Рµ. СЃ СѓС‡РµС‚РѕРј РІСЃРµС… РїСЂРёРІСЏР·РѕРє);3-РµСЃР»Рё РґРѕ СЃС‡РµС‚Р° РїРµСЂРµРїР»Р°С‚Р°, С‚Рѕ Р±Р°Р»Р°РЅСЃ РїРѕ РґРѕРіРѕРІРѕСЂСѓ, РёРЅР°С‡Рµ РЅР°С‡РёСЃР»РµРЅРёРµ РїРѕ СЃС‡РµС‚Сѓ;4-РѕР±С‰РёР№ РґРѕР»Рі РїРѕ РґРѕРіРѕРІРѕСЂСѓ РЅР° РјРѕРјРµРЅС‚ РїРµС‡Р°С‚Рё*/  DECODE(t.type_pay_summa,0, GetAgreementBalans(b.id_agree, b.bill_date), 1, b.summa_total, 2, q.summa_balans, 3,          (CASE WHEN GetAgreementBalans(b.id_agree, b.bill_date)-b.summa_total>0 THEN b.summa_total ELSE GetAgreementBalans(b.id_agree, b.bill_date) END),  4, GetAgreementBalans(b.id_agree, sysdate),b.summa_total)*100 AS summa,              b.summa_total*100 AS bill_summa, -q.summa_subsid*100 AS subsid_sum, 		i.message, RPAD(o.adres,200) AS adres, RPAD(u.value,200) AS adres_go,   RPAD(DECODE(<<RPar1>>, 2, b.customer_name, 3,  a.agreement_no, 4, TO_CHAR(b.bill_date), NVL(u.value, o.city_name||o.street_name||o.house||o.flat))||to_char(t.type_together_page),200) AS f_order,   RPAD(y.phones,50) AS phone_cent, y.org_name AS name_cent, RPAD(y.bank_attr,240) AS bank_cent, y.address AS adres_cent, y.bill_note,   DECODE(y.org_name||y.address||y.bill_note||i.message, null, 0, 1) AS is_note    /*РµСЃР»Рё РІСЃРµ СЌС‚Рё РїРѕР»СЏ РїСѓСЃС‚vРµ, С‚Рѕ РІ РїСЂРёРјРµС‡Р°РЅРёРё СЃС‡РµС‚Р° РІvРІРѕРґРёС‚СЊ РЅРµС‡РµРіРѕ Рё РїРѕСЌС‚РѕРјСѓ is_note=0*/FROM (((((bill_info b JOIN agreement a ON b.id_agree = a.id_agree )/*СЃРІСЏР·С‹РІР°РµС‚СЃСЏ СЃ РґРѕРіРѕРІРѕСЂРѕРј, Р° РЅРµ СЃ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµРј РґРѕРі-СЂР° РїСЂРѕРґР°Р¶Рё С‚.Рє. СЃС‡РµС‚ РјРѕР¶РµС‚ Р±vС‚СЊ РІvСЃС‚Р°РІР»РµРЅ РЅРµ                                                                                                                               РЅР° РґРѕРіРѕРІРѕСЂ РїСЂРѕРґР°Р¶Рё Р° РЅР° РґСЂСѓРіРѕР№ РґРѕРіРѕРІРѕСЂ*/               JOIN (((((agreement_sale_info e                                      INNER JOIN agreement_sale_category y ON e.id_agreement_sale_category = y.id_agreement_sale_category AND e.id_agent_seller = y.id_agent    LEFT JOIN  (  SELECT   r_589.id_entity_instance,    r_f.name   FROM      udp_object_property__r r_589                                                  LEFT  JOIN reference_element__r r_f ON r_f.id_reference_element=r_589.id_reference_element  AND r_f.id_reference=r_589.id_reference      WHERE  r_589.id_property=589   )  r_589  ON r_589.id_entity_instance=y.id_entity_instance   )                                      JOIN (SELECT x.id_agree, -SUM(NVL(supported_balans,0)) AS summa  FROM agreement_sale_agent_account x                                                                              JOIN agent_account w ON x.id_agent_account=w.id_agent_account                                                                 GROUP BY x.id_agree) s ON s.id_agree=e.id_agree)                                     LEFT JOIN object_info o ON e.id_object = o.id_object)                                      LEFT JOIN udp_object_property__r u ON e.id_entity_instance = u.id_entity_instance AND u.id_property =200) 					     LEFT JOIN information_message i ON e.id_information_message = i.id_information_message)                                                   ON b.id_agree = e.id_agree )                  JOIN bill_type t ON b.id_bill_type=t.id_bill_type)                 JOIN bill_saldo q ON b.id_billdoc=q.id_billdoc)                 JOIN bill_penalty_fee f ON b.id_billdoc=f.id_billdoc) ,  bill tq_bill, operation_entity_instance__r tq_oei  WHERE b.id_billdoc = tq_bill.id_billdoc AND tq_bill.id_entity_instance=tq_oei.id_entity_instance AND tq_oei.id_operation=<<id_operation_for_ei>>
 09.11.2007 12:23:44  SESSION unc_44592786 TIME: 28,218 (PREPARE: 28,101) RECORD COUNT: 1
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:23:44  SESSION unc_44592786 TIME: 0,001 BIND: id_operation_for_ei = 261095,000000000000000000
@@ -3616,7 +3616,7 @@ SELECT s.*, rownum AS row_num     FROM  (SELECT b.id_billdoc, b.description, b.s
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:23:45  SESSION unc_44592786 TIME: 0,001 BIND: id_operation_for_ei = 261095,000000000000000000
 09.11.2007 12:23:45  SESSION unc_44592786 EXEC QUERY : 
-SELECT DISTINCT c.id_agree, '' AS cpoint_inf, x.name||', счетчик '||i.model_name||' №'||i.serial_no AS device_inf     FROM bill b, agreement_sale_cpoint c JOIN udp_object_property__r p ON p.id_entity_instance=c.id_entity_instance AND p.id_property=55 AND p.id_reference=81 AND p.id_reference_element=561,                 cpoint_detail d, change_cd_reg r, device_info i, energy_measure x, bill tq_bill, operation_entity_instance__r tq_oei  WHERE x.id_energy = d.id_energy AND x.id_measure = d.id_measure AND r.id_device = i.id_device AND c.id_cpoint = d.id_cpoint AND c.id_energy = d.id_energy  AND  c.id_agree=b.id_agree                   AND d.id_cpoint = r.id_cpoint AND d.id_cpoint_detail = r.id_cpoint_detail AND d.id_energy=r.id_energy                   AND sysdate BETWEEN r.begin_date AND NVL(r.end_date, TO_DATE('90000101','yyyymmdd')) AND b.id_billdoc = tq_bill.id_billdoc AND tq_bill.id_entity_instance=tq_oei.id_entity_instance AND tq_oei.id_operation=<<id_operation_for_ei>>
+SELECT DISTINCT c.id_agree, '' AS cpoint_inf, x.name||', СЃС‡РµС‚С‡РёРє '||i.model_name||' в„–'||i.serial_no AS device_inf     FROM bill b, agreement_sale_cpoint c JOIN udp_object_property__r p ON p.id_entity_instance=c.id_entity_instance AND p.id_property=55 AND p.id_reference=81 AND p.id_reference_element=561,                 cpoint_detail d, change_cd_reg r, device_info i, energy_measure x, bill tq_bill, operation_entity_instance__r tq_oei  WHERE x.id_energy = d.id_energy AND x.id_measure = d.id_measure AND r.id_device = i.id_device AND c.id_cpoint = d.id_cpoint AND c.id_energy = d.id_energy  AND  c.id_agree=b.id_agree                   AND d.id_cpoint = r.id_cpoint AND d.id_cpoint_detail = r.id_cpoint_detail AND d.id_energy=r.id_energy                   AND sysdate BETWEEN r.begin_date AND NVL(r.end_date, TO_DATE('90000101','yyyymmdd')) AND b.id_billdoc = tq_bill.id_billdoc AND tq_bill.id_entity_instance=tq_oei.id_entity_instance AND tq_oei.id_operation=<<id_operation_for_ei>>
 09.11.2007 12:23:48  SESSION unc_44592786 TIME: 3,351 (PREPARE: 3,342) RECORD COUNT: 0
 ----------------------------------------------------------------------------------------------------
 09.11.2007 12:24:15  SESSION unc_44592786 COMMIT OK
@@ -3816,7 +3816,7 @@ SELECT a.selector_caption, a.id_entity_class_parent, a.id_entity_parent, a.id_en
 09.11.2007 12:24:30  SESSION unc_43157890 EXEC QUERY : 
 SELECT r.id_attribute_child, a.id_entity_attribute, a.is_static_attribute, a.column_name
      , NVL(a.is_primary_key,0) +
-      ( SELECT SIGN(COUNT(*)) /* если есть аттр.PK не входящие в эту связь, то все аттр.обязательны */
+      ( SELECT SIGN(COUNT(*)) /* РµСЃР»Рё РµСЃС‚СЊ Р°С‚С‚СЂ.PK РЅРµ РІС…РѕРґСЏС‰РёРµ РІ СЌС‚Сѓ СЃРІСЏР·СЊ, С‚Рѕ РІСЃРµ Р°С‚С‚СЂ.РѕР±СЏР·Р°С‚РµР»СЊРЅС‹ */
         FROM entity_attribute__r B LEFT JOIN entity_relationship_attr__r D
           ON D.id_entity_parent = B.id_entity AND D.id_attribute_parent = B.id_entity_attribute
         WHERE B.is_primary_key=1

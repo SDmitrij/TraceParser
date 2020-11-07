@@ -7,19 +7,19 @@ import java.util.regex.Pattern;
 
 public class Prepare extends Parser {
 
+    private final Pattern pattern = Pattern.compile("(?<=PREPARE:)\\s*(\\d+,\\d+)\\s*(?=[)])");
     public Prepare() {
         super();
     }
 
     @Override
     protected void parse() {
-        var pattern = Pattern.compile("(?<=PREPARE:)\\s*(\\d+,\\d+)\\s*(?=[)])");
         for (String line : blockLines) {
             if (line.contains("PREPARE:")) {
                 var matcher = pattern.matcher(line);
                 if (matcher.find()) {
-                    var time = matcher.group();
-                    matches.add(new Match().setOperator("Prepare").setTime(time));
+                    var time = matcher.group().trim().replace(",", ".");
+                    matches.add(new Match().setOperator("Prepare").setTime(Double.parseDouble(time)));
                 }
             }
         }

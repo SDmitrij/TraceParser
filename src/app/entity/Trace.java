@@ -7,7 +7,8 @@ import app.initialize.ParserInitializer;
 import app.shared.Config;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,8 +33,9 @@ public class Trace {
 
     private void apply() {
         var blockLines = new ArrayList<String>();
+        interaction.clear();
         interaction.seed();
-        while (scanner.hasNext()) {
+        while (scanner.hasNextLine()) {
             var line = scanner.nextLine();
             if (!line.equals(config.getDelimiter())) {
                 blockLines.add(line);
@@ -52,13 +54,11 @@ public class Trace {
     private void setScanner() {
         try {
             var path = String.format("%s%sSQLTrace.log", System.getProperty("user.dir"), File.separator);
-            scanner = new Scanner(new File(path));
-        } catch (FileNotFoundException e) {
+            scanner = new Scanner(new File(path), StandardCharsets.UTF_8);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void statistics() {
-
-    }
+    private void statistics() { interaction.perform(); }
 }
