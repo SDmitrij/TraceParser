@@ -33,8 +33,6 @@ public class Trace {
 
     private void apply() {
         var block = new StringBuilder();
-        interaction.clear();
-        interaction.seed();
         while (scanner.hasNextLine()) {
             var line = scanner.nextLine();
             if (!line.equals(config.getDelimiter())) {

@@ -14,7 +14,7 @@ public class Interaction {
     private final Connection connection = Connect.getInstance().getConnection();
     private final Config config = ConfigInitializer.getInstance().getConfig();
 
-    public Interaction() {  }
+    public Interaction() { seed(); }
 
     public void save(Parser parser) {
         this.parser = parser;
@@ -22,23 +22,24 @@ public class Interaction {
     }
     public void perform() { select(); }
 
-    public void seed() {
+    private void seed() {
         var sql = "CREATE TABLE IF NOT EXISTS 'matches' ('id' INTEGER PRIMARY KEY, 'operator' TEXT NOT NULL," +
             "'time' REAL NOT NULL);";
         executeUpdate(sql);
     }
 
-    public void clear() {
-        var sql = "DELETE FROM 'matches';";
-        executeUpdate(sql);
-    }
-
     public void finish() {
         try {
+            clear();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void clear() {
+        var sql = "DELETE FROM 'matches';";
+        executeUpdate(sql);
     }
 
     private void insert() {
