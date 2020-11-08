@@ -7,23 +7,19 @@ import java.util.regex.Pattern;
 
 public class Alter extends Parser {
 
-    private final Pattern pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=OK)");
+    private static final Pattern pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=OK)");
     public Alter() {
         super();
     }
 
     @Override
     protected void parse() {
-        var lines = blockLines.iterator();
-        while(lines.hasNext()) {
-            var line = lines.next();
-            if (line.contains("ALTER")) {
-                var selectStat = lines.next();
-                var matcher = pattern.matcher(selectStat);
-                if (matcher.find()) {
-                    var time = matcher.group().trim().replace(",", ".");
-                    matches.add(new Match().setOperator("Alter").setTime(Double.parseDouble(time)));
-                }
+        if (block.contains("ALTER")) {
+            var matcher = pattern.matcher(block);
+            while (matcher.find()) {
+                matches.add(new Match()
+                    .setOperator("Alter")
+                    .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
             }
         }
     }

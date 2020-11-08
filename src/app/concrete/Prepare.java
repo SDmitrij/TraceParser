@@ -14,14 +14,15 @@ public class Prepare extends Parser {
 
     @Override
     protected void parse() {
-        for (String line : blockLines) {
-            if (line.contains("PREPARE:")) {
-                var matcher = pattern.matcher(line);
-                if (matcher.find()) {
-                    var time = matcher.group().trim().replace(",", ".");
-                    matches.add(new Match().setOperator("Prepare").setTime(Double.parseDouble(time)));
-                }
+
+        if (block.contains("PREPARE:")) {
+            var matcher = pattern.matcher(block);
+            while (matcher.find()) {
+                matches.add(new Match()
+                    .setOperator("Prepare")
+                    .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
             }
         }
+
     }
 }

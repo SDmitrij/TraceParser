@@ -1,5 +1,6 @@
 {
   "operators": ["Bind", "Select", "Alter", "Prepare"],
   "delimiter": "----------------------------------------------------------------------------------------------------",
-  "database": "trace_parser"
+  "database": "trace_parser",
+  "traceFile": "SQLTrace.log"
 }

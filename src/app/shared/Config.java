@@ -7,7 +7,10 @@ public class Config {
     private List<String> operators;
     private String delimiter;
     private String database;
+    private String traceFile;
 
+    public String getTraceFile() { return traceFile; }
+    public void setTraceFile(String traceFile) { this.traceFile = traceFile; }
     public List<String> getOperators() {
         return operators;
     }

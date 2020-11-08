@@ -32,20 +32,20 @@ public class Trace {
     }
 
     private void apply() {
-        var blockLines = new ArrayList<String>();
+        var block = new StringBuilder();
         interaction.clear();
         interaction.seed();
         while (scanner.hasNextLine()) {
             var line = scanner.nextLine();
             if (!line.equals(config.getDelimiter())) {
-                blockLines.add(line);
+                block.append(line);
             } else {
                 for (Parser parser : parsers) {
-                    parser.to(blockLines);
+                    parser.to(block.toString());
                     interaction.save(parser);
                     parser.matches.clear();
                 }
-                blockLines.clear();
+                block = new StringBuilder();
             }
         }
         scanner.close();
@@ -53,7 +53,8 @@ public class Trace {
 
     private void setScanner() {
         try {
-            var path = String.format("%s%sSQLTrace.log", System.getProperty("user.dir"), File.separator);
+            var path = String.format("%s%s%s", System.getProperty("user.dir"), File.separator,
+                config.getTraceFile());
             scanner = new Scanner(new File(path), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();

@@ -14,16 +14,12 @@ public class Select extends Parser {
 
     @Override
     protected void parse() {
-        var lines = blockLines.iterator();
-        while(lines.hasNext()) {
-            var line = lines.next();
-            if (line.contains("SELECT")) {
-                var selectStat = lines.next();
-                var matcher = pattern.matcher(selectStat);
-                if (matcher.find()) {
-                    var time = matcher.group().trim().replace(",", ".");
-                    matches.add(new Match().setOperator("Select").setTime(Double.parseDouble(time)));
-                }
+        if (block.contains("SELECT")) {
+            var matcher = pattern.matcher(block);
+            while (matcher.find()) {
+                matches.add(new Match()
+                    .setOperator("Select")
+                    .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
             }
         }
     }
