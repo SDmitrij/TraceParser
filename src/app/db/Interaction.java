@@ -33,6 +33,14 @@ public class Interaction {
         executeUpdate(sql);
     }
 
+    public void finish() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void insert() {
         if(parser.matches.isEmpty()) return;
         var sql = new StringBuilder();

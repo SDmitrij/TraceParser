@@ -61,5 +61,8 @@ public class Trace {
         }
     }
 
-    private void statistics() { interaction.perform(); }
+    private void statistics() {
+        interaction.perform();
+        interaction.finish();
+    }
 }
