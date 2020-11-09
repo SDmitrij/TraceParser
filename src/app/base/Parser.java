@@ -14,7 +14,10 @@ public abstract class Parser {
         matches = new ArrayList<>();
     }
 
-    public void applyTo(String block) { this.block = block; parse(); }
+    public void applyTo(String block) {
+        this.block = block;
+        parse();
+    }
     protected abstract void parse();
-    protected String prepareTimeToConvert(String time) { return time.trim().replace(",", "."); }
+    protected String prepareTime(String time) { return time.trim().replace(",", "."); }
 }

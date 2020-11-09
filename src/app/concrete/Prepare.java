@@ -19,7 +19,7 @@ public class Prepare extends Parser {
             while (matcher.find()) {
                 matches.add(new Match()
                     .setOperator("Prepare")
-                    .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
+                    .setTime(Double.parseDouble(prepareTime(matcher.group()))));
             }
         }
     }

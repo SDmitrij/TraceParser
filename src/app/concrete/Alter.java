@@ -19,7 +19,7 @@ public class Alter extends Parser {
             while (matcher.find()) {
                 matches.add(new Match()
                     .setOperator("Alter")
-                    .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
+                    .setTime(Double.parseDouble(prepareTime(matcher.group()))));
             }
         }
     }

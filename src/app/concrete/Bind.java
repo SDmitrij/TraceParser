@@ -17,7 +17,7 @@ public class Bind extends Parser {
             while (matcher.find()) {
                 matches.add(new Match()
                     .setOperator("Bind")
-                    .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
+                    .setTime(Double.parseDouble(prepareTime(matcher.group()))));
             }
         }
     }
