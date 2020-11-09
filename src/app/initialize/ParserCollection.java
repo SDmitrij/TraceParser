@@ -20,7 +20,8 @@ public class ParserCollection {
     private void init() {
         try {
             for (String operator : config.getOperators()) {
-                parsers.add((Parser)Class.forName("app.concrete." + operator).getDeclaredConstructor().newInstance());
+                parsers.add((Parser)Class.forName(String.format("app.concrete.%s", operator))
+                    .getDeclaredConstructor().newInstance());
             }
         } catch (InstantiationException
                 | NoSuchMethodException

@@ -2,5 +2,6 @@
   "operators": ["Bind", "Select", "Alter", "Prepare"],
   "delimiter": "----------------------------------------------------------------------------------------------------",
   "database": "trace_parser",
+  "table": "matches",
   "traceFile": "SQLTrace.log"
 }

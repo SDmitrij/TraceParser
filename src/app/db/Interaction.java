@@ -33,20 +33,21 @@ public class Interaction {
     }
 
     private void seed() {
-        var sql = "CREATE TABLE IF NOT EXISTS 'matches' ('id' INTEGER PRIMARY KEY, 'operator' TEXT NOT NULL," +
-                "'time' REAL NOT NULL);";
+        var sql = String.format("CREATE TABLE IF NOT EXISTS '%s' " +
+            "('id' INTEGER PRIMARY KEY, 'operator' TEXT NOT NULL, 'time' REAL NOT NULL);",
+            config.getTable());
         executeUpdate(sql);
     }
 
     private void clear() {
-        var sql = "DELETE FROM 'matches';";
+        var sql = String.format("DELETE FROM '%s';", config.getTable());
         executeUpdate(sql);
     }
 
     private void insert() {
         if(parser.matches.isEmpty()) return;
         var sql = new StringBuilder();
-        sql.append("INSERT INTO 'matches' ('operator', 'time') VALUES ");
+        sql.append(String.format("INSERT INTO '%s' ('operator', 'time') VALUES ", config.getTable()));
 
         var matches = parser.matches.iterator();
         while(matches.hasNext()) {
@@ -61,7 +62,7 @@ public class Interaction {
     private void select() {
         for (String operator : config.getOperators()) {
             var sql = (String.format("SELECT SUM(time) AS 'total_time' " +
-                    "FROM matches WHERE operator = '%s';", operator));
+                "FROM %s WHERE operator = '%s';", config.getTable(), operator));
             var res = executeQuery(sql);
             try {
                 if (res == null) return;

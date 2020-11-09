@@ -7,6 +7,7 @@ public class Config {
     private List<String> operators;
     private String delimiter;
     private String database;
+    private String table;
     private String traceFile;
 
     public String getTraceFile() { return traceFile; }
@@ -29,4 +30,6 @@ public class Config {
     public void setDatabase(String database) {
         this.database = database;
     }
+    public String getTable() { return table; }
+    public void setTable(String table) { this.table = table; }
 }
