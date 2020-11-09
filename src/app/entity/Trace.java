@@ -17,12 +17,16 @@ public class Trace {
     private final Config config = ConfigInstance.getInstance().getConfig();
     private final List<Parser> parsers;
     private Scanner scanner;
+    private File file;
+    private final String filePath = String.format("%s%s%s", System.getProperty("user.dir"), File.separator,
+        config.getTraceFile());
     private final Interaction interaction;
 
     public Trace() {
         parsers = new ParserCollection().getList();
         interaction = new Interaction();
-        setScanner();
+        initFile();
+        initScanner();
     }
 
     public void analyze() {
@@ -48,12 +52,21 @@ public class Trace {
         scanner.close();
     }
 
-    private void setScanner() {
+    private void initScanner() {
         try {
-            var path = String.format("%s%s%s", System.getProperty("user.dir"), File.separator,
-                config.getTraceFile());
-            scanner = new Scanner(new File(path), StandardCharsets.UTF_8);
+            scanner = new Scanner(file, StandardCharsets.UTF_8);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initFile() {
+        try {
+            if (!new File(filePath).exists()) {
+                throw new Exception("Can't find sql-trace file.");
+            }
+            file = new File(filePath);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
