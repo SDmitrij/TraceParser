@@ -2,36 +2,35 @@ package app.entity;
 
 import app.base.Parser;
 import app.db.Interaction;
-import app.initialize.ConfigInitializer;
-import app.initialize.ParserInitializer;
+import app.initialize.ConfigInstance;
+import app.initialize.ParserCollection;
 import app.shared.Config;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Trace {
 
-    private final Config config = ConfigInitializer.getInstance().getConfig();
+    private final Config config = ConfigInstance.getInstance().getConfig();
     private final List<Parser> parsers;
     private Scanner scanner;
     private final Interaction interaction;
 
     public Trace() {
-        parsers = new ParserInitializer().getList();
+        parsers = new ParserCollection().getList();
         interaction = new Interaction();
         setScanner();
     }
 
     public void analyze() {
-        apply();
+        applyParsers();
         statistics();
     }
 
-    private void apply() {
+    private void applyParsers() {
         var block = new StringBuilder();
         while (scanner.hasNextLine()) {
             var line = scanner.nextLine();
@@ -39,7 +38,7 @@ public class Trace {
                 block.append(line);
             } else {
                 for (Parser parser : parsers) {
-                    parser.to(block.toString());
+                    parser.applyTo(block.toString());
                     interaction.save(parser);
                     parser.matches.clear();
                 }

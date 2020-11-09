@@ -7,12 +7,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParserInitializer {
+public class ParserCollection {
 
-    private final Config config = ConfigInitializer.getInstance().getConfig();
+    private final Config config = ConfigInstance.getInstance().getConfig();
     private final List<Parser> parsers = new ArrayList<>();
 
-    public ParserInitializer() { init(); }
+    public ParserCollection() { init(); }
     public List<Parser> getList() {
         return parsers;
     }

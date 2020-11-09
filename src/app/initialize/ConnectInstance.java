@@ -1,6 +1,5 @@
-package app.db;
+package app.initialize;
 
-import app.initialize.ConfigInitializer;
 import app.shared.Config;
 
 import java.io.File;
@@ -8,16 +7,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connect {
+public class ConnectInstance {
 
-    private static final Config config = ConfigInitializer.getInstance().getConfig();
-    private static final Connect instance = new Connect();
+    private static final Config config = ConfigInstance.getInstance().getConfig();
+    private static final ConnectInstance instance = new ConnectInstance();
     private Connection connection;
 
-    public static Connect getInstance() { return instance; }
+    public static ConnectInstance getInstance() { return instance; }
     public Connection getConnection() { return connection; }
 
-    private Connect() {
+    private ConnectInstance() {
         try {
             connection = DriverManager
                 .getConnection(String.format("jdbc:sqlite:%s%s%s.db",

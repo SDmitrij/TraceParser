@@ -6,17 +6,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
-public class ConfigInitializer {
+public class ConfigInstance {
 
     private static final String
-            configFile = System.getProperty("user.dir") + File.separator + "config.json";
+        configFile = System.getProperty("user.dir") + File.separator + "config.json";
     private Config config;
-    private static final ConfigInitializer initializer = new ConfigInitializer();
+    private static final ConfigInstance initializer = new ConfigInstance();
 
-    private ConfigInitializer() { deserialize(); }
+    private ConfigInstance() { deserialize(); }
     public Config getConfig() { return config; }
 
-    public static ConfigInitializer getInstance() {
+    public static ConfigInstance getInstance() {
         return initializer;
     }
 

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Alter extends Parser {
 
-    private static final Pattern pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=OK)");
+    private final Pattern pattern = Pattern.compile("(?<=TIME:)\\s*(\\d+,\\d+)\\s*(?=OK)");
     public Alter() {
         super();
     }

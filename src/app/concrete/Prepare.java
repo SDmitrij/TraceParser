@@ -14,7 +14,6 @@ public class Prepare extends Parser {
 
     @Override
     protected void parse() {
-
         if (block.contains("PREPARE:")) {
             var matcher = pattern.matcher(block);
             while (matcher.find()) {
@@ -23,6 +22,5 @@ public class Prepare extends Parser {
                     .setTime(Double.parseDouble(prepareTimeToConvert(matcher.group()))));
             }
         }
-
     }
 }
