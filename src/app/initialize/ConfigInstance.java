@@ -14,7 +14,7 @@ public class ConfigInstance {
     private static final ConfigInstance initializer = new ConfigInstance();
 
     private ConfigInstance() {
-        initFile();
+        initConfigFile();
         deserialize();
     }
     public Config getConfig() { return config; }
@@ -31,7 +31,7 @@ public class ConfigInstance {
         }
     }
 
-    private void initFile() {
+    private void initConfigFile() {
         try {
             if (!new File(filePath).exists()) {
                 throw new Exception("Can't find config file.");

@@ -25,7 +25,7 @@ public class Trace {
     public Trace() {
         parsers = new ParserCollection().getList();
         interaction = new Interaction();
-        initFile();
+        initSqlTraceFile();
         initScanner();
     }
 
@@ -60,7 +60,7 @@ public class Trace {
         }
     }
 
-    private void initFile() {
+    private void initSqlTraceFile() {
         try {
             if (!new File(filePath).exists()) {
                 throw new Exception("Can't find sql-trace file.");
